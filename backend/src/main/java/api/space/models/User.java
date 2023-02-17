@@ -22,29 +22,29 @@ public class User {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", length = 100)
     private String name;
 
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "email", length = 100)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 100)
+    @Column(name = "password", length = 100)
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
+    private Address address = new Address();
 
     @OneToMany
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private List<Image> photos = new ArrayList<>();
+    private List<Photo> photos = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "profile_photo_id", referencedColumnName = "id")
-    private Image profilePhoto;
+    private Photo profilePhoto;
 
-    @OneToMany
-    @JoinColumn(name = "friend_id", referencedColumnName = "id")
+    @ManyToMany
+    @JoinTable(name = "tb_user_friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
     private List<User> friends = new ArrayList<>();
 
     @OneToMany(mappedBy = "author")

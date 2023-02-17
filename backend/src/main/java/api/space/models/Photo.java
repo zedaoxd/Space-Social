@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Image {
+public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

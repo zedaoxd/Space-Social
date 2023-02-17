@@ -33,7 +33,7 @@ public class Post {
 
     @OneToOne
     @JoinColumn(name = "image_id", referencedColumnName = "id")
-    private Image image;
+    private Photo image;
 
     @OneToMany
     @JoinColumn(name = "post_id", referencedColumnName = "id")
